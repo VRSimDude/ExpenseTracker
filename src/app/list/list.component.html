@@ -1,0 +1,95 @@
+<div class="list">
+  @if (isAddingExpense) {
+  <app-new-expense
+    (close)="onCloseAddExpense()"
+    (added)="listChanged(false)"
+  ></app-new-expense>
+  } @if (isAddingCategory) {
+  <app-new-category
+    (close)="onCloseAddCategory()"
+    (added)="listChanged(true)"
+  ></app-new-category>
+  } @if (!isAddingExpense && !isAddingCategory) {
+  <button (click)="onStartAddExpense()">Add new expense</button>
+  <button (click)="onStartAddCategory()">Add new category</button>
+  }
+
+  <div class="filter">
+    <div class="filter-toggle" (click)="toggleFilter()">
+      Filter {{ isFilterVisible ? "&#9660;" : "&#9650;" }}
+    </div>
+    @if(isFilterVisible) {
+    <div class="filter-types">
+      <label for="min-amount"> min Amount </label>
+      <label> max Amount </label>
+      <label> min Date </label>
+      <label> max Date </label>
+      <label> Category </label>
+    </div>
+    <div class="filter-inputs">
+      <input
+        type="number"
+        id="min-amount"
+        name="min-amount"
+        [(ngModel)]="filter.minAmount"
+      />
+      <input
+        type="number"
+        id="max-amount"
+        name="max-amount"
+        [(ngModel)]="filter.maxAmount"
+      />
+      <input
+        type="date"
+        id="min-date"
+        name="min-date"
+        [(ngModel)]="filter.minDate"
+      />
+      <input
+        type="date"
+        id="max-date"
+        name="min-date"
+        [(ngModel)]="filter.maxDate"
+      />
+      <select
+        name="category"
+        id="category"
+        #category
+        (change)="onFilterCategoryChanged(category.value)"
+      >
+        <option default value="all">All</option>
+        <option default value="none">None</option>
+        @for (category of categories; track category) { @if(category !== "none")
+        {
+        <option [value]="category">{{ category }}</option>
+        } }
+      </select>
+    </div>
+    <div class="filter-buttons">
+      <button (click)="onResetFilter()">Reset</button>
+      <button (click)="onApplyFilter()">Apply</button>
+    </div>
+    }
+  </div>
+
+  @if (expenses()) {
+  <table class="list-table">
+    <tr>
+      <th (click)="onSortDescription()">Description</th>
+      <th (click)="onSortAmount()">Amount</th>
+      <th (click)="onSortDate()">Date</th>
+      <th (click)="onSortCategory()">Category</th>
+      <th>Del</th>
+    </tr>
+    @for (expense of expenses(); track expense.id) {
+    <tr>
+      <td>{{ expense.description }}</td>
+      <td>{{ expense.value | number : "1.2-2" }} €</td>
+      <td>{{ expense.date }}</td>
+      <td>{{ expense.category.toString() }}</td>
+      <td><button (click)="onDeleteExpense(expense.id)">X</button></td>
+    </tr>
+    }
+  </table>
+  }
+</div>

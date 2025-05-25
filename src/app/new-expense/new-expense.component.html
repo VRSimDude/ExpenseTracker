@@ -1,0 +1,42 @@
+<div class="expense">
+  <h1>Add new expense</h1>
+  <p>
+    <label for="description">Description</label>
+    <input
+      type="text"
+      id="description"
+      name="description"
+      [(ngModel)]="enteredDescription"
+    />
+  </p>
+
+  <p>
+    <label for="value">Amount</label>
+    <input type="number" id="value" name="value" [(ngModel)]="enteredValue" />
+  </p>
+
+  <p>
+    <label for="date">Date</label>
+    <input type="date" id="date" name="date" [(ngModel)]="enteredDate" />
+  </p>
+
+  <p>
+    <label for="category">Category</label>
+    <select
+      name="category"
+      id="category"
+      #category
+      (change)="onCategoryChanged(category.value)"
+    >
+      <option default value="none">None</option>
+      @for (category of categories; track category) { @if(category !== "none") {
+      <option [value]="category">{{ category }}</option>
+      } }
+    </select>
+  </p>
+
+  <p>
+    <button type="button" (click)="onCancel()">Cancel</button>
+    <button type="button" (click)="onAdd()">Add</button>
+  </p>
+</div>

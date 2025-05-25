@@ -1,0 +1,32 @@
+@if (expensesCategorised().length && expensesMaxValue()) {
+<div class="dashboard">
+  <h1>Your Expenses overview:</h1>
+  <div class="dashboard-values">
+    @for (expense of expensesCategorised(); track expense.id) {
+    @if(expense.value !== 0) {
+    <div
+      class="dashboard-expense"
+      [style.height]="(expense.value / expensesMaxValue()) * 100 + '%'"
+      [style.width]="100 / expensesCategorised().length + '%'"
+      [style.background-color]="
+        'rgb(' +
+        (expense.value / expensesMaxValue()) * 255 +
+        ', ' +
+        ((100 - (expense.value / expensesMaxValue()) * 100) * 255) / 100 +
+        ', 0)'
+      "
+    >
+      {{ expense.value | number:'1.0-2' }} €
+    </div>
+    } }
+  </div>
+  <div class="dashboard-descriptions">
+    @for (expense of expensesCategorised(); track expense.id) {
+    @if(expense.value !== 0) {
+    <div [style.width]="100 / expensesCategorised().length + '%'">
+      {{ expense.description }}
+    </div>
+    } }
+  </div>
+</div>
+}

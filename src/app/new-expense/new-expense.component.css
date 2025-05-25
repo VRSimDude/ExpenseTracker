@@ -1,0 +1,42 @@
+.expense {
+  width: 100vw;
+  border-radius: 4px;
+  background-color: #04aa6d;
+  color: white;
+}
+
+.expense h1 {
+  padding-top: 12px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.expense label {
+  display: inline-block;
+  width: 48%;
+  text-align: right;
+}
+
+.expense input,
+.expense select {
+  display: inline-flex;
+  width: 40%;
+  margin-left: 16px;
+  justify-content: center;
+  text-align: center;
+}
+
+.expense button {
+  display: inline-flex;
+  width: 50%;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+}
+
+@media only screen and (min-width: 768px) and (min-device-width: 768px) {
+  .expense {
+    width: 512px;
+  }
+}
