@@ -1,0 +1,38 @@
+.category {
+  width: 100vw;
+  border-radius: 4px;
+  background-color: #04aa6d;
+  color: white;
+}
+
+.category h1 {
+  padding-top: 12px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.category label {
+  display: inline-block;
+  width: 48%;
+  text-align: right;
+}
+
+.category input {
+  width: 40%;
+  margin-left: 16px;
+}
+
+.buttons button {
+  display: inline-flex;
+  width: 50%;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+}
+
+@media only screen and (min-width: 768px) and (min-device-width: 768px) {
+  .category {
+    width: 512px;
+  }
+}

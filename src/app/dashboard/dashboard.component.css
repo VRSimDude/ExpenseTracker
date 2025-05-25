@@ -1,0 +1,42 @@
+.dashboard {
+  display: block;
+  width: 99vw;
+  border-style: dashed;
+}
+
+.dashboard h1 {
+  margin: 8px 0;
+  text-align: center;
+}
+
+.dashboard-values {
+  display: flex;
+  height: 200px;
+  font-size: 12px;
+}
+
+.dashboard-expense {
+  display: flex;
+  justify-content: center;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.dashboard-descriptions {
+  display: flex;
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: white;
+  overflow-wrap: anywhere;
+  text-align: center;
+  font-size: 12px;
+}
+
+@media only screen and (min-width: 768px) and (min-device-width: 768px) {
+  .dashboard {
+    width: 506px;
+  }
+}
